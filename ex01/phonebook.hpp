@@ -2,6 +2,7 @@
 #define PHONE_BOOK
 
 #include <iostream>
+#include <iomanip>
 
 class Contact{
 	private:
@@ -44,14 +45,37 @@ class Contact{
 };
 
 class PhoneBook{
+	private:
+		Contact contacts[8];
 	public:
-		Contact contacts[7];
-		void display()
+		void AddConatact(Contact contact, int i)
 		{
-			std::cout << "my full name is " << contacts[0].getFirstName() << " "<< contacts[0].getLasrName() <<'\n';
-			std::cout << "as a nikcname i'm " << contacts[0].getNickName() << '\n';
-			std::cout << "if u want to call me u can use " << contacts[0].getPhoneNumber() << '\n';
-			std::cout << "one of my secrect is " << getDarkSecret() << '\n';
+			contacts[i] = contact;
+		}
+		void display(int index)
+		{
+			std::cout << std::setw(10) << "Index"  << " | ";
+			std::cout << std::setw(10) << "First Name" << " | ";
+			std::cout << std::setw(10) << "Last Name" << " | ";
+			std::cout << std::setw(10) << "Nick Name" << " |\n";
+			int i = 0;
+			while (i < index)
+			{
+				std::cout << std::setw(10) << i << " | ";
+				std::cout << std::setw(10) << contacts[i].getFirstName() << " | " ;
+				std::cout << std::setw(10) << contacts[i].getLasrName() << " | " ;
+				std::cout << std::setw(10) << contacts[i].getNickName()  << " |\n";
+				i++;
+			}
+		}
+		void display_contact(int index)
+		{
+			std::cout << "contact " << index << "\n"; 
+			std::cout << "my full name is " << contacts[index].getFirstName() << " "<< contacts[index].getLasrName() <<'\n';
+			std::cout << "as a nikcname i'm " << contacts[index].getNickName() << '\n';
+			std::cout << "if u want to call me u can use " << contacts[index].getPhoneNumber() << '\n';
+			std::cout << "one of my secrect is " << contacts[index].getDarkSecret() << '\n';
+			std::cout << "\n";
 		}
 };
 

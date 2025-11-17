@@ -4,8 +4,8 @@
 int main(int ac, char **av)
 {
 	int i;
-	i = 1;
 	int j;
+	i = 1;
 
 	if (ac > 1)
 	{
