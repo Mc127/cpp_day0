@@ -1,48 +1,9 @@
-#ifndef PHONE_BOOK
-#define PHONE_BOOK
+#ifndef PHONE_BOOK_HPP
+#define PHONE_BOOK_HPP
 
 #include <iostream>
 #include <iomanip>
-
-class Contact{
-	private:
-	    std::string first_name;
-		std::string last_name;
-		std::string nickname;
-		std::string	phone_number;
-		std::string darkest_secret;
-	public:
-		void setFirstName(std::string firstName){
-			first_name = firstName;
-		}
-		std::string getFirstName(){
-			return (first_name);
-		}
-		void setLasrName(std::string lastName){
-			last_name = lastName;
-		}
-		std::string getLasrName(){
-			return (last_name);
-		}
-		void setNickName(std::string NickName){
-			nickname = NickName;
-		}
-		std::string getNickName(){
-			return (nickname);
-		}
-		void setPhoneNumber(std::string phoneNumber){
-			phone_number = phoneNumber;
-		}
-		std::string getPhoneNumber(){
-			return (phone_number);
-		}
-		void setDarkSecret(std::string darkestSecret){
-			darkest_secret = darkestSecret;
-		}
-		std::string getDarkSecret(){
-			return (darkest_secret);
-		}
-};
+#include "contact.hpp"
 
 class PhoneBook{
 	private:
@@ -62,19 +23,30 @@ class PhoneBook{
 			while (i < index)
 			{
 				std::cout << std::setw(10) << i << " | ";
-				std::cout << std::setw(10) << contacts[i].getFirstName() << " | " ;
-				std::cout << std::setw(10) << contacts[i].getLasrName() << " | " ;
-				std::cout << std::setw(10) << contacts[i].getNickName()  << " |\n";
+				if (contacts[i].getFirstName().length() > 10)
+					std::cout << contacts[i].getFirstName().substr(0, 9) << "." << " | ";
+				else
+					std::cout << std::setw(10) << contacts[i].getFirstName() << " | ";
+
+				if (contacts[i].getLastName().length() > 10)
+					std::cout << contacts[i].getLastName().substr(0, 9) << "." << " | " ;
+				else
+					std::cout << std::setw(10) << contacts[i].getLastName() << " | " ;
+				if (contacts[i].getNickName().length() > 10)
+					std::cout << contacts[i].getNickName().substr(0, 9) << "." << " |\n";
+				else
+					std::cout << std::setw(10) << contacts[i].getNickName() << " |\n";
 				i++;
 			}
 		}
 		void display_contact(int index)
 		{
 			std::cout << "contact " << index << "\n"; 
-			std::cout << "my full name is " << contacts[index].getFirstName() << " "<< contacts[index].getLasrName() <<'\n';
-			std::cout << "as a nikcname i'm " << contacts[index].getNickName() << '\n';
-			std::cout << "if u want to call me u can use " << contacts[index].getPhoneNumber() << '\n';
-			std::cout << "one of my secrect is " << contacts[index].getDarkSecret() << '\n';
+			std::cout << "First Name : " << contacts[index].getFirstName() <<'\n';
+			std::cout << "Last Name : "<< contacts[index].getLastName() << '\n';
+			std::cout << "Nick Name : " << contacts[index].getNickName() << '\n';
+			std::cout << "Phone Number : " << contacts[index].getPhoneNumber() << '\n';
+			std::cout << "Darkest Secret : " << contacts[index].getDarkSecret() << '\n';
 			std::cout << "\n";
 		}
 };
