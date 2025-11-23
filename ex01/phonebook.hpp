@@ -23,28 +23,28 @@ class PhoneBook{
 		}
 		void display()
 		{
-			std::cout << std::setw(10) << "Index"  << " | ";
-			std::cout << std::setw(10) << "First Name" << " | ";
-			std::cout << std::setw(10) << "Last Name" << " | ";
-			std::cout << std::setw(10) << "Nick Name" << " |\n";
+			std::cout << std::setw(10) << "Index"  << "| ";
+			std::cout << std::setw(10) << "First Name" << "| ";
+			std::cout << std::setw(10) << "Last Name" << "| ";
+			std::cout << std::setw(10) << "Nick Name" << "|\n";
 			int i = 0;
 
 			while (i <= idx)
 			{
-				std::cout << std::setw(10) << i << " | ";
+				std::cout << std::setw(10) << i << "| ";
 				if (contacts[i].getFirstName().length() > 10)
-					std::cout << contacts[i].getFirstName().substr(0, 9) << "." << " | ";
+					std::cout << contacts[i].getFirstName().substr(0, 9) << "." << "| ";
 				else
-					std::cout << std::setw(10) << contacts[i].getFirstName() << " | ";
+					std::cout << std::setw(10) << contacts[i].getFirstName() << "| ";
 
 				if (contacts[i].getLastName().length() > 10)
-					std::cout << contacts[i].getLastName().substr(0, 9) << "." << " | " ;
+					std::cout << contacts[i].getLastName().substr(0, 9) << "." << "| " ;
 				else
-					std::cout << std::setw(10) << contacts[i].getLastName() << " | " ;
+					std::cout << std::setw(10) << contacts[i].getLastName() << "| " ;
 				if (contacts[i].getNickName().length() > 10)
-					std::cout << contacts[i].getNickName().substr(0, 9) << "." << " |\n";
+					std::cout << contacts[i].getNickName().substr(0, 9) << "." << "|\n";
 				else
-					std::cout << std::setw(10) << contacts[i].getNickName() << " |\n";
+					std::cout << std::setw(10) << contacts[i].getNickName() << "|\n";
 				i++;
 			}
 		}

@@ -1,6 +1,16 @@
 #include "phonebook.hpp"
+#include "phonebook.h"
 
-#include <cstdlib>
+std::string trim_str(std::string str)
+{
+	size_t start;
+	size_t end;
+	start = str.find_first_not_of(" \t\n");
+	if (start == str.npos)
+		return ("");
+	end = str.find_last_not_of(" \t\n");
+	return (str.substr(start, end - start + 1));
+}
 
 int fill_fistName(Contact *contact)
 {
@@ -78,7 +88,7 @@ int fill_darkSecret(Contact *contact)
 	return 0;
 }
 
-int	serch_function(PhoneBook phonebook)
+int	serch_function(PhoneBook phonebook, int s_idx)
 {
 	std::string index;
 	int     idx;
@@ -89,6 +99,7 @@ int	serch_function(PhoneBook phonebook)
 		std::cout << "Enter the index of the contact please [0,7] !... \n";
 		if (!std::getline(std::cin, index))
 			return 1;
+		index = trim_str(index);
 		if (index.length() > 1 || !isdigit(index[0]))
 		{
 			std::cout << "Error invalid index [0,7] !...\n";
@@ -101,41 +112,10 @@ int	serch_function(PhoneBook phonebook)
 			index = "";
 		}
 	}
-	phonebook.display_contact(idx);
+	if (s_idx < idx)
+		std::cout << "number of contact less than : "<< idx << "\n";
+	else
+		phonebook.display_contact(idx);
 	return 0;
 }
 
-int main()
-{
-	Contact contact;
-	PhoneBook phonebook;
-	std::string param;
-	int     i, search;
-
-	i = 0;
-	search = 0;
-	phonebook.InitilizeIdx();
-	while (true)
-	{
-		std::cout << "Enter a command please : [ADD] [SEARCH] [EXIT]\n";
-		if (!std::getline(std::cin, param))
-			break;
-		if (param == "ADD")
-		{
-			if (fill_fistName(&contact) || fill_lastName(&contact) ||
-					fill_nickName(&contact) || fill_phoneNum(&contact) ||
-						fill_darkSecret(&contact))
-				break;
-			phonebook.AddConatact(contact, i);
-			i++;
-			search = 1;
-			if (i == 8)
-				i = 0;
-		}
-		else if (param == "SEARCH" && search != 0)
-			serch_function(phonebook);
-		else if (param == "EXIT")
-			break;
-	}
-	return (0);
-}
