@@ -8,19 +8,28 @@
 class PhoneBook{
 	private:
 		Contact contacts[8];
+		int idx;
 	public:
+		void InitilizeIdx()
+		{
+			idx = -1;
+		}
 		void AddConatact(Contact contact, int i)
 		{
 			contacts[i] = contact;
+			idx++;
+			if (idx >= 7)
+				idx = 7;
 		}
-		void display(int index)
+		void display()
 		{
 			std::cout << std::setw(10) << "Index"  << " | ";
 			std::cout << std::setw(10) << "First Name" << " | ";
 			std::cout << std::setw(10) << "Last Name" << " | ";
 			std::cout << std::setw(10) << "Nick Name" << " |\n";
 			int i = 0;
-			while (i < index)
+
+			while (i <= idx)
 			{
 				std::cout << std::setw(10) << i << " | ";
 				if (contacts[i].getFirstName().length() > 10)

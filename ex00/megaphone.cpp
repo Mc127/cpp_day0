@@ -5,8 +5,8 @@ int main(int ac, char **av)
 {
 	int i;
 	int j;
-	i = 1;
 
+	i = 1;
 	if (ac > 1)
 	{
 		while (av[i])

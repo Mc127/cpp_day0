@@ -78,19 +78,24 @@ int fill_darkSecret(Contact *contact)
 	return 0;
 }
 
-int	serch_function(PhoneBook phonebook ,int i)
+int	serch_function(PhoneBook phonebook)
 {
 	std::string index;
 	int     idx;
 
-	phonebook.display(i);
+	phonebook.display();
 	while (index.empty())
 	{
 		std::cout << "Enter the index of the contact please [0,7] !... \n";
 		if (!std::getline(std::cin, index))
 			return 1;
+		if (index.length() > 1 || !isdigit(index[0]))
+		{
+			std::cout << "Error invalid index [0,7] !...\n";
+			index = "";
+		}
 		idx = index[0] - '0';
-		if (index.length() > 1 || !isdigit(index[0]) || idx > 7)
+		if (idx > 7)
 		{
 			std::cout << "Error invalid index [0,7] !...\n";
 			index = "";
@@ -105,9 +110,11 @@ int main()
 	Contact contact;
 	PhoneBook phonebook;
 	std::string param;
-	int     i;
+	int     i, search;
 
 	i = 0;
+	search = 0;
+	phonebook.InitilizeIdx();
 	while (true)
 	{
 		std::cout << "Enter a command please : [ADD] [SEARCH] [EXIT]\n";
@@ -121,11 +128,12 @@ int main()
 				break;
 			phonebook.AddConatact(contact, i);
 			i++;
+			search = 1;
 			if (i == 8)
 				i = 0;
 		}
-		else if (param == "SEARCH" && i > 0)
-			serch_function(phonebook ,i);
+		else if (param == "SEARCH" && search != 0)
+			serch_function(phonebook);
 		else if (param == "EXIT")
 			break;
 	}
