@@ -1,12 +1,11 @@
 #include "phonebook.hpp"
-#include "phonebook.h"
 
 int main()
 {
-	Contact contact;
-	PhoneBook phonebook;
-	std::string param;
-	int     i, search;
+	Contact		contact;
+	PhoneBook	phonebook;
+	std::string	param;
+	int     i,	search;
 
 	i = 0;
 	search = 0;
